@@ -8,5 +8,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Nunito Sans', serif;
+  scroll-behavior: smooth;
   @apply bg-neutral-900 text-neutral-300;
 }
