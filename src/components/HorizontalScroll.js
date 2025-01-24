@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import Card from './Card'
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 
-const HorizontalScroll = ({ data = [], heading }) => {
+const HorizontalScroll = ({ data = [], heading, trending }) => {
   const containerRef = useRef();
   const handleNext = () => containerRef.current.scrollLeft += 300
 
@@ -17,7 +17,7 @@ const HorizontalScroll = ({ data = [], heading }) => {
           {
             data.map((data, index) => {
               return (
-                <Card key={data.id + 'heading' + index} data={data} index={index} trending={true} />
+                <Card key={data.id + 'heading' + index} data={data} index={index} trending={trending} />
               )
             })
           }

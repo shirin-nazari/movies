@@ -1,12 +1,13 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import moment from 'moment'
+import { Link } from 'react-router-dom';
 
-const Card = ({ data, trending, index }) => {
+const Card = ({ data, trending, index, media_type }) => {
     const imageURL = useSelector(state => state.movieoData.imageURL);
-    console.log(data)
+    const mediaType = data.media_type ?? media_type
     return (
-        <div className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden rounded relative'>
+        <Link to={'/' + mediaType + '/' + data.id} className='w-full min-w-[230px] max-w-[230px] h-80 overflow-hidden block rounded relative hover:scale-105 transition-all'>
 
             <img src={imageURL + data?.poster_path} alt="" />
             <div className='absolute top-4'>
@@ -25,7 +26,7 @@ const Card = ({ data, trending, index }) => {
                     <p className='bg-black px-1 rounded-full text-xs text-white'>Rating: {Number(data.vote_average).toFixed(1)}</p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
