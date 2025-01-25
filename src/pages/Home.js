@@ -15,10 +15,10 @@ const Home = () => {
         <div>
             <BannerHome />
             <HorizontalScroll data={tradingData} heading={"Trading Show"} trending={true} />
-            <HorizontalScroll data={nowPlayingData} heading={"Now Playing"} />
-            <HorizontalScroll data={topRatedData} heading={"Top Rated Movies"} />
-            <HorizontalScroll data={popularTvShowData} heading={"Popular Tv Show"} />
-            <HorizontalScroll data={onTheAirShowData} heading={"On The Air"} />
+            <HorizontalScroll data={nowPlayingData} heading={"Now Playing"} media_type={"movie"} />
+            <HorizontalScroll data={topRatedData} heading={"Top Rated Movies"} media_type={"movie"} />
+            <HorizontalScroll data={popularTvShowData} heading={"Popular Tv Show"} media_type={"tv"} />
+            <HorizontalScroll data={onTheAirShowData} heading={"On The Air"} media_type={"tv"} />
 
         </div>
     )
