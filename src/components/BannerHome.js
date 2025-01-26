@@ -55,7 +55,11 @@ const BannerHome = () => {
                                         <span>|</span>
                                         <p>View : {Number(data.popularity).toFixed(0)}</p>
                                     </div>
-                                    <Link to={'/' + data?.media_type + '/' + data.id} className='bg-white px-4 py-2 text-black font-bold rounded mt-3 hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-105'>Play Now</Link>
+                                    <Link to={'/' + data?.media_type + '/' + data.id}>
+                                        <button className='bg-white px-4 py-2 text-black font-bold rounded mt-3 hover:bg-gradient-to-l from-red-700 to-orange-500 shadow-md transition-all hover:scale-105'>
+                                            Play Now
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
