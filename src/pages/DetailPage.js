@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetchDetails from '../hooks/useFetchDetails';
 import useFetch from '../hooks/useFetch';
@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 import Divider from '../components/Divider';
 import HorizontalScroll from '../components/HorizontalScroll'
+import VideoPlay from '../components/VideoPlay';
 function DetailPage() {
     const params = useParams();
     const { data } = useFetchDetails(`/${params?.explore}/${params?.id}`)
@@ -13,9 +14,14 @@ function DetailPage() {
     const { data: similarData } = useFetch(`/${params?.explore}/${params?.id}/similar`);
     const { data: recommendationsData } = useFetch(`/${params?.explore}/${params?.id}/recommendations`);
     const imageURL = useSelector(state => state.movieoData.imageURL);
-    console.log(data)
-    console.log('star cast', castData)
-    console.log('similar data', similarData)
+    const [playVideo, setPlayVideo] = useState(false)
+    const [playVideoId, setPlayVideoId] = useState("")
+
+    const handlePlayVideo = (data) => {
+        setPlayVideoId(data)
+        setPlayVideo(true)
+    }
+
     const duration = (Number(data?.runtime) / 60).toFixed(1).split('.')
 
     return (
@@ -36,6 +42,10 @@ function DetailPage() {
                     <img src={imageURL + data?.poster_path}
                         alt={data?.title}
                         className='h-80 w-60 object-cover rounded' />
+                    <button
+                        onClick={() => handlePlayVideo(data)}
+                        className='mt-3 w-full py-2 px-4 text-center bg-white text-black rounded font-bold text-lg hover:bg-gradient-to-l from-red-500 to-orange-500 hover:scale-105 transition-all'>
+                        Play Now</button>
                 </div>
                 <div>
                     <h2 className='text-2xl lg:text-4xl font-bold text-white'>
@@ -104,6 +114,10 @@ function DetailPage() {
                 <HorizontalScroll data={similarData} heading={`Similar ${params?.explore}`} media_type={params?.explore} />
                 <HorizontalScroll data={recommendationsData} heading={`Recommendation ${params?.explore}`} media_type={params?.explore} />
             </div>
+            {
+                playVideo && (<VideoPlay data={playVideoId} close={() => setPlayVideo(false)} media_type={params?.explore} />)
+            }
+
         </div>
     )
 }
